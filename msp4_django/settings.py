@@ -26,7 +26,7 @@ SECRET_KEY = '5p%5x2ws)%dzusw@71u8a@#1@jy3qn+dz75-(lze^8rk5i8zbv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['msp4djangoproject.herokuapp.com']
+ALLOWED_HOSTS = ['msp4djangoproject.herokuapp.com', 'localhost']
 
 
 # Application definition
