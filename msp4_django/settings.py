@@ -9,10 +9,11 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 import dj_database_url
 
+development = os.environ.get('DEVELOPMENT', False)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,8 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '5p%5x2ws)%dzusw@71u8a@#1@jy3qn+dz75-(lze^8rk5i8zbv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = development
 
+# if development:
+#     ALLOWED_HOSTS = ['localhost']
+# else:
 ALLOWED_HOSTS = ['msp4djangoproject.herokuapp.com', 'localhost']
 
 
@@ -75,16 +79,17 @@ WSGI_APPLICATION = 'msp4_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+# if development:
+#     DATABASES = {
+#         'default': {
+#          'ENGINE': 'django.db.backends.sqlite3',
+#          'NAME': BASE_DIR / 'db.sqlite3',
+#         }
 #     }
-# }
-
+# else:
 DATABASES = {
-    'default': dj_database_url.parse('postgres://fpqaoxlxvlvphp:d63f84310e4c157fe88386046625c0e72cde239aed68fade35899dfde519ff81@ec2-54-228-250-82.eu-west-1.compute.amazonaws.com:5432/d2l2svf8ufnnnh')
-}
+        'default': dj_database_url.parse('postgres://fpqaoxlxvlvphp:d63f84310e4c157fe88386046625c0e72cde239aed68fade35899dfde519ff81@ec2-54-228-250-82.eu-west-1.compute.amazonaws.com:5432/d2l2svf8ufnnnh')
+    }
 
 
 # Password validation
